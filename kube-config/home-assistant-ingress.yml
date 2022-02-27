@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-home-assistant
+spec:
+  ingressClassName: public
+  # above field is optional as microk8s default ingressclass will be assigned
+  rules:
+  - host: smart.drawneek.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: home-assistant
+            port:
+              number: 8123
